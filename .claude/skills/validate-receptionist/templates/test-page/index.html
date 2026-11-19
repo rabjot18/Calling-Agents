@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{CLIENT}} · Test Call</title>
+<style>
+  :root {
+    --bg: #0b0d12; --panel: #141821; --line: #232938; --text: #e9ecf3; --muted: #8b93a7;
+    --agent: #ff9f5a; --user: #5ab8ff; --ok: #4ade80; --bad: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: radial-gradient(1200px 700px at 50% 20%, #151a26 0%, var(--bg) 60%);
+         color: var(--text); font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+         display: flex; flex-direction: column; align-items: center; padding: 32px 16px 48px; }
+  header { text-align: center; margin-bottom: 8px; }
+  h1 { font-size: 20px; font-weight: 600; margin: 0; letter-spacing: .2px; }
+  .meta { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .stage { position: relative; width: min(340px, 80vw); aspect-ratio: 1; display: grid; place-items: center; margin: 28px 0 8px; }
+  .orb { width: 58%; aspect-ratio: 1; border-radius: 50%; cursor: pointer; border: 0; padding: 0;
+         background: radial-gradient(circle at 35% 30%, #ffffff 0%, var(--c1, #9aa4bd) 18%, var(--c2, #3a4256) 62%, #11141c 100%);
+         box-shadow: 0 0 calc(30px + var(--glow, 0px)) calc(var(--glow, 0px) / 3) var(--halo, rgba(154,164,189,.35));
+         transform: scale(var(--s, 1)); transition: transform 70ms linear, box-shadow 90ms linear, background 400ms ease; }
+  .orb:focus-visible { outline: 2px solid var(--user); outline-offset: 6px; }
+  .ring { position: absolute; inset: 12%; border-radius: 50%; border: 1px solid var(--line); opacity: .6; pointer-events: none; }
+  .ring.pulse { animation: pulse 1.6s ease-out infinite; }
+  @keyframes pulse { from { transform: scale(.85); opacity: .7; } to { transform: scale(1.15); opacity: 0; } }
+  .status { font-size: 16px; min-height: 24px; text-align: center; }
+  .hint { color: var(--muted); font-size: 13px; text-align: center; min-height: 20px; }
+  .controls { display: flex; gap: 10px; margin-top: 14px; }
+  button.btn { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 999px;
+               padding: 8px 16px; font: inherit; cursor: pointer; }
+  button.btn:disabled { opacity: .4; cursor: default; }
+  button.btn.end { border-color: #5b2a2a; color: #ffb4b4; }
+  .panel { width: min(720px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin-top: 28px; display: none; }
+  .panel h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 10px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .stats b { color: var(--text); font-weight: 600; }
+  .summary { margin: 0 0 14px; }
+  pre { white-space: pre-wrap; word-break: break-word; background: #0f121a; border: 1px solid var(--line); border-radius: 10px; padding: 12px; font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; max-height: 360px; overflow: auto; margin: 0 0 12px; }
+  .err { color: var(--bad); }
+</style>
+</head>
+<body>
+  <header>
+    <h1>{{CLIENT}}</h1>
+    <div class="meta">{{AGENT_NAME}} · {{AGENT_VERSION}} · line {{PHONE}}</div>
+  </header>
+
+  <div class="stage">
+    <div class="ring" id="ring"></div>
+    <button class="orb" id="orb" aria-label="Start call"></button>
+  </div>
+  <div class="status" id="status">Tap the orb to call</div>
+  <div class="hint" id="hint">Your browser will ask for the microphone. Transfers and SMS only work on real phone calls.</div>
+  <div class="controls">
+    <button class="btn" id="mute" disabled>Mute</button>
+    <button class="btn end" id="end" disabled>End call</button>
+  </div>
+
+  <section class="panel" id="panel" aria-live="polite">
+    <h2>Last call</h2>
+    <div class="stats" id="stats"></div>
+    <p class="summary" id="summary"></p>
+    <h2>Transcript</h2>
+    <pre id="transcript"></pre>
+    <h2>Extracted data</h2>
+    <pre id="analysis"></pre>
+  </section>
+
+<script type="module">
+  // Served through the local server, which proxies jsdelivr's +esm bundles so their "/npm/…" dependency imports resolve.
+  import { RetellWebClient } from "/npm/retell-client-js-sdk@3.0.3/+esm";
+
+  const $ = (id) => document.getElementById(id);
+  const orb = $("orb"), ring = $("ring"), statusEl = $("status"), hint = $("hint");
+  const client = new RetellWebClient();
+  let state = "idle", callId = null, muted = false, startedAt = 0, timer = null;
+  let micCtx = null, micAnalyser = null, micStream = null, raf = null;
+
+  function setStatus(text, sub) { statusEl.textContent = text; if (sub !== undefined) hint.textContent = sub; }
+  function setState(s) {
+    state = s;
+    $("end").disabled = !(s === "live" || s === "connecting");
+    $("mute").disabled = s !== "live";
+    ring.classList.toggle("pulse", s === "connecting");
+    orb.setAttribute("aria-label", s === "live" ? "End call" : "Start call");
+  }
+
+  function rms(analyser) {
+    if (!analyser) return 0;
+    const buf = new Float32Array(analyser.fftSize);
+    analyser.getFloatTimeDomainData(buf);
+    let sum = 0; for (const v of buf) sum += v * v;
+    return Math.sqrt(sum / buf.length);
+  }
+  function agentLevel() {
+    const a = client.analyzerComponent;
+    if (!a) return 0;
+    try { return typeof a.calculateVolume === "function" ? a.calculateVolume() : rms(a.analyser); } catch { return 0; }
+  }
+  function animate() {
+    const ag = Math.min(1, agentLevel() * 4);
+    const us = muted ? 0 : Math.min(1, rms(micAnalyser) * 6);
+    const level = Math.max(ag, us * 0.8);
+    const agentDominant = ag >= us;
+    orb.style.setProperty("--s", (1 + level * 0.28).toFixed(3));
+    orb.style.setProperty("--glow", `${Math.round(level * 70)}px`);
+    if (state === "live") {
+      orb.style.setProperty("--c1", agentDominant ? "#ffc58f" : "#9fd6ff");
+      orb.style.setProperty("--c2", agentDominant ? "#c2571a" : "#1d6fb3");
+      orb.style.setProperty("--halo", agentDominant ? "rgba(255,159,90,.45)" : "rgba(90,184,255,.45)");
+      if (level > 0.08) statusEl.textContent = agentDominant ? "Agent speaking…" : "Listening…";
+      else statusEl.textContent = "Live · " + clock();
+    }
+    raf = requestAnimationFrame(animate);
+  }
+  function clock() { const s = Math.floor((Date.now() - startedAt) / 1000); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; }
+
+  async function startMicMeter() {
+    try {
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      micCtx = new AudioContext();
+      micAnalyser = micCtx.createAnalyser(); micAnalyser.fftSize = 1024;
+      micCtx.createMediaStreamSource(micStream).connect(micAnalyser);
+    } catch (e) { throw new Error("Microphone blocked. Allow it in the address bar and try again."); }
+  }
+  function stopMicMeter() {
+    micStream?.getTracks().forEach((t) => t.stop()); micStream = null;
+    micCtx?.close(); micCtx = null; micAnalyser = null;
+  }
+
+  async function start() {
+    if (state !== "idle") return;
+    setState("connecting"); setStatus("Connecting…", "");
+    $("panel").style.display = "none";
+    try {
+      await startMicMeter();
+      const r = await fetch("/api/start", { method: "POST" });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data.error_message || data.error || `Server error ${r.status}`);
+      callId = data.call_id;
+      await client.startCall({ accessToken: data.access_token, callId: data.call_id,
+                               transport: data.transport, iceServers: data.ice_servers });
+      await client.startAudioPlayback().catch(() => {});
+    } catch (e) {
+      fail(e);
+    }
+  }
+  function end() { if (state === "live" || state === "connecting") client.stopCall(); }
+  function fail(e) {
+    console.error(e);
+    stopMicMeter(); setState("idle");
+    setStatus("Call failed", ""); hint.innerHTML = `<span class="err">${String(e?.message || e)}</span>`;
+  }
+
+  client.on("call_started", () => { startedAt = Date.now(); setState("live"); setStatus("Live · 0:00", "Talk normally. Tap the orb or End call to hang up."); });
+  client.on("call_ended", () => { stopMicMeter(); setState("idle"); setStatus("Call ended", "Fetching the transcript…"); orb.style.removeProperty("--c1"); orb.style.removeProperty("--c2"); orb.style.removeProperty("--halo"); if (callId) loadCall(callId, 0); });
+  client.on("error", (e) => fail(e));
+
+  orb.addEventListener("click", () => (state === "live" ? end() : start()));
+  $("end").addEventListener("click", end);
+  $("mute").addEventListener("click", () => { muted = !muted; muted ? client.mute() : client.unmute(); $("mute").textContent = muted ? "Unmute" : "Mute"; });
+
+  async function loadCall(id, attempt) {
+    const r = await fetch(`/api/call/${encodeURIComponent(id)}`);
+    const c = await r.json();
+    const ready = c.analysis && (c.analysis.call_summary || Object.keys(c.analysis).length);
+    if ((!ready || c.status !== "ended") && attempt < 12) return setTimeout(() => loadCall(id, attempt + 1), 5000);
+    const lat = c.latency_p50 || {};
+    $("stats").innerHTML = [
+      ["Duration", c.duration_ms ? `${Math.round(c.duration_ms / 1000)}s` : "–"],
+      ["Latency p50 end-to-end", lat.e2e ? `${Math.round(lat.e2e)} ms` : "–"],
+      ["LLM", lat.llm ? `${Math.round(lat.llm)} ms` : "–"],
+      ["Ended by", c.disconnection_reason || "–"],
+      ["Cost", c.cost != null ? `${(c.cost / 100).toFixed(3)} USD` : "–"],
+      ["Tool calls", (c.tool_calls || []).filter(t => t.role === "tool_call_invocation").length],
+    ].map(([k, v]) => `<span>${k}: <b>${v}</b></span>`).join("");
+    $("summary").textContent = c.analysis?.call_summary || (ready ? "" : "Analysis isn't ready yet. Reload the page in a minute.");
+    $("transcript").textContent = c.transcript || "(no transcript)";
+    const a = { ...(c.analysis || {}) }; delete a.call_summary;
+    $("analysis").textContent = Object.keys(a).length ? JSON.stringify(a, null, 2) : "(none)";
+    $("panel").style.display = "block";
+    hint.textContent = "Tap the orb to call again.";
+  }
+
+  animate();
+</script>
+</body>
+</html>

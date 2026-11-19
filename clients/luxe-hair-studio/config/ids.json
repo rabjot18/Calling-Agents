@@ -1,0 +1,20 @@
+{
+  "agent_id": "agent_8bf636284bfbe4bb735e67c3ce",
+  "llm_id": "llm_f5d3e02661e8ea82f580d5caf355",
+  "published_version": null,
+  "draft_version": 0,
+  "phone_number": null,
+  "app_ids": [],
+  "kb_ids": [],
+  "vercel_url": null,
+  "test_case_ids": [
+    "test_case_1087c026e827",
+    "test_case_712be626335d",
+    "test_case_815b95e91fdc",
+    "test_case_fe1938f19204",
+    "test_case_36be834c7661",
+    "test_case_78169995af13",
+    "test_case_415a3211e975"
+  ],
+  "booking_mode": "request (Cal.com key pending)"
+}

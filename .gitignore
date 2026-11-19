@@ -1,0 +1,22 @@
+.env
+**/.env
+
+# Secrets and local app data (each app's own .gitignore also covers these)
+**/.env.*
+!**/.env.example
+saas/data/
+
+# Installed packages and build output
+**/node_modules/
+**/.next/
+**/*.tsbuildinfo
+
+# Video work files (the finished launch videos in launch-video/out/ are kept)
+launch-video/out/draft-*.mp4
+launch-video/out/qa/
+launch-video/out/sfx-search/
+
+# The reference screen recording (someone else's reel, and ~100 MB)
+.claude/skills/ScreenRecording*
+
+.DS_Store

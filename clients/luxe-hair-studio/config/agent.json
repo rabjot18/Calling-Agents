@@ -1,0 +1,125 @@
+{
+  "agent_name": "Luxe Hair Studio \u2013 Ava",
+  "voice_id": "retell-Chloe",
+  "language": "en-US",
+  "timezone": "America/Halifax",
+  "boosted_keywords": [
+    "Luxe",
+    "Luxe Hair Studio",
+    "Vernon Street",
+    "Halifax",
+    "Michael",
+    "Kylie",
+    "balayage",
+    "highlights",
+    "root touch-up",
+    "toner",
+    "gloss",
+    "keratin",
+    "blowout",
+    "updo",
+    "extensions",
+    "bridal",
+    "bond repair",
+    "scalp detox",
+    "fashion colour",
+    "colour correction."
+  ],
+  "end_call_after_silence_ms": 30000,
+  "max_call_duration_ms": 900000,
+  "enable_dnc_detection": true,
+  "data_storage_setting": "everything",
+  "data_storage_retention_days": 365,
+  "post_call_analysis_data": [
+    {
+      "type": "string",
+      "name": "caller_name",
+      "description": "Caller's name if given"
+    },
+    {
+      "type": "string",
+      "name": "callback_number",
+      "description": "Best callback number"
+    },
+    {
+      "type": "string",
+      "name": "reason_for_call",
+      "description": "Short reason for the call"
+    },
+    {
+      "type": "enum",
+      "name": "urgency",
+      "description": "urgent for complaints/reactions, normal otherwise, low for info-only",
+      "choices": [
+        "low",
+        "normal",
+        "urgent"
+      ]
+    },
+    {
+      "type": "boolean",
+      "name": "is_new_customer",
+      "description": "True if the caller is new to the salon"
+    },
+    {
+      "type": "boolean",
+      "name": "appointment_booked",
+      "description": "True if an appointment was actually booked in the calendar"
+    },
+    {
+      "type": "string",
+      "name": "appointment_time",
+      "description": "Booked or requested appointment time"
+    },
+    {
+      "type": "string",
+      "name": "service_requested",
+      "description": "Service and stylist requested"
+    },
+    {
+      "type": "enum",
+      "name": "appointment_changed",
+      "description": "Change to an existing appointment",
+      "choices": [
+        "rescheduled",
+        "cancelled",
+        "request_taken",
+        "none"
+      ]
+    },
+    {
+      "type": "string",
+      "name": "message_for_owner",
+      "description": "Message the owner needs to act on, if any"
+    },
+    {
+      "type": "boolean",
+      "name": "follow_up_needed",
+      "description": "True if the team must call back"
+    },
+    {
+      "type": "boolean",
+      "name": "called_after_hours",
+      "description": "True if the call came while the salon was closed"
+    },
+    {
+      "type": "boolean",
+      "name": "transfer_requested",
+      "description": "True if the caller asked for a person"
+    },
+    {
+      "type": "string",
+      "name": "unanswered_question",
+      "description": "Any question Ava could not answer"
+    },
+    {
+      "type": "boolean",
+      "name": "is_spam",
+      "description": "True for sales calls, spam or wrong numbers"
+    }
+  ],
+  "response_engine": {
+    "type": "retell-llm",
+    "llm_id": "llm_f5d3e02661e8ea82f580d5caf355"
+  }
+}

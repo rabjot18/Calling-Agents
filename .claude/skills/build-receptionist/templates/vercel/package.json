@@ -1,0 +1,6 @@
+{
+  "name": "receptionist-functions",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" }
+}

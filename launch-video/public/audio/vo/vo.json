@@ -1,0 +1,143 @@
+{
+  "v01": {
+    "text": "You just missed a booking. A regular. A hundred and forty dollars.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 4.9,
+    "cut": [
+      0.0,
+      4.9
+    ]
+  },
+  "v02": {
+    "text": "Who answers when you're with a customer?",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 2.41,
+    "cut": [
+      4.9,
+      7.31
+    ]
+  },
+  "v03": {
+    "text": "Meet Pulse.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 1.5,
+    "cut": [
+      7.31,
+      8.81
+    ]
+  },
+  "v04": {
+    "text": "The AI receptionist for small business.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 2.57,
+    "cut": [
+      8.81,
+      11.38
+    ]
+  },
+  "v05": {
+    "text": "It answers every call,",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 1.92,
+    "cut": [
+      11.38,
+      13.3
+    ]
+  },
+  "v06": {
+    "text": "and writes each one straight into your day.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 2.73,
+    "cut": [
+      13.3,
+      16.03
+    ]
+  },
+  "v07": {
+    "text": "One number. Every caller. Maya answers them all.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 3.77,
+    "cut": [
+      16.03,
+      19.8
+    ]
+  },
+  "v08": {
+    "text": "And it knows what's urgent.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 2.3,
+    "cut": [
+      19.8,
+      22.1
+    ]
+  },
+  "v09": {
+    "text": "Every call is summarised and transcribed,",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 2.76,
+    "cut": [
+      22.1,
+      24.86
+    ]
+  },
+  "v10": {
+    "text": "and names are spelled back, letter by letter.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 2.67,
+    "cut": [
+      24.86,
+      27.53
+    ]
+  },
+  "v11": {
+    "text": "Thirty-eight calls. Fourteen bookings. All on autopilot.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 3.954,
+    "cut": [
+      27.53,
+      32.07
+    ],
+    "edit": "atempo 1.15 (pitch kept) to fit the 3.9 s funnel shot"
+  },
+  "v12": {
+    "text": "Stop sending customers to voicemail.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 2.53,
+    "cut": [
+      32.07,
+      34.6
+    ]
+  },
+  "v13": {
+    "text": "Pulse. Answers, books, remembers.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 3.13,
+    "cut": [
+      34.6,
+      37.73
+    ]
+  },
+  "v14": {
+    "text": "Start answering every call today.",
+    "model": "gemini-2.5-flash-preview-tts",
+    "voice": "Puck",
+    "seconds": 1.816,
+    "cut": [
+      37.73,
+      39.690958
+    ]
+  }
+}

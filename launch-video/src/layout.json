@@ -1,0 +1,402 @@
+{
+  "today": {
+    "pageH": 1080,
+    "entries": [
+      {
+        "x": 334,
+        "y": 148,
+        "w": 665,
+        "h": 60,
+        "text": "9:12Sara MendesBookedCut and colour"
+      },
+      {
+        "x": 334,
+        "y": 221,
+        "w": 665,
+        "h": 60,
+        "text": "10:04Leo ParkBookedMen's cut"
+      },
+      {
+        "x": 334,
+        "y": 294,
+        "w": 665,
+        "h": 60,
+        "text": "11:40Tom LeeInfoBalayage price and parking"
+      },
+      {
+        "x": 334,
+        "y": 367,
+        "w": 665,
+        "h": 60,
+        "text": "12:05Dana RuizUrgentScalp reaction after colour"
+      },
+      {
+        "x": 334,
+        "y": 440,
+        "w": 665,
+        "h": 60,
+        "text": "1:22Amira HassanBookedBlow-out"
+      },
+      {
+        "x": 334,
+        "y": 513,
+        "w": 665,
+        "h": 60,
+        "text": "2:47Chris DoyleRequestMove appointment"
+      },
+      {
+        "x": 334,
+        "y": 586,
+        "w": 665,
+        "h": 60,
+        "text": "3:31Unknown callerSpamBusiness listing sales call"
+      },
+      {
+        "x": 334,
+        "y": 659,
+        "w": 665,
+        "h": 60,
+        "text": "4:18Nina PatelBookedWomen's cut"
+      },
+      {
+        "x": 334,
+        "y": 732,
+        "w": 665,
+        "h": 60,
+        "text": "5:02Grace KimInfoGift cards"
+      }
+    ],
+    "day": {
+      "x": 269,
+      "y": 141,
+      "w": 730,
+      "h": 709,
+      "text": "9am9:12Sara MendesBookedCut and colour10am10:04Leo ParkBookedMen's cut11am11:40T"
+    },
+    "hours": [
+      {
+        "x": 269,
+        "y": 141,
+        "w": 64,
+        "h": 73,
+        "text": "9am"
+      },
+      {
+        "x": 269,
+        "y": 214,
+        "w": 64,
+        "h": 73,
+        "text": "10am"
+      },
+      {
+        "x": 269,
+        "y": 287,
+        "w": 64,
+        "h": 73,
+        "text": "11am"
+      },
+      {
+        "x": 269,
+        "y": 360,
+        "w": 64,
+        "h": 73,
+        "text": "12pm"
+      },
+      {
+        "x": 269,
+        "y": 433,
+        "w": 64,
+        "h": 73,
+        "text": "1pm"
+      },
+      {
+        "x": 269,
+        "y": 506,
+        "w": 64,
+        "h": 73,
+        "text": "2pm"
+      },
+      {
+        "x": 269,
+        "y": 579,
+        "w": 64,
+        "h": 73,
+        "text": "3pm"
+      },
+      {
+        "x": 269,
+        "y": 652,
+        "w": 64,
+        "h": 73,
+        "text": "4pm"
+      },
+      {
+        "x": 269,
+        "y": 725,
+        "w": 64,
+        "h": 73,
+        "text": "5pm"
+      },
+      {
+        "x": 269,
+        "y": 798,
+        "w": 64,
+        "h": 52,
+        "text": "6pm"
+      }
+    ],
+    "head": {
+      "x": 268,
+      "y": 28,
+      "w": 334,
+      "h": 32,
+      "text": "Tuesday 17 November"
+    },
+    "aside": [
+      {
+        "x": 1044,
+        "y": 132,
+        "w": 340,
+        "h": 415,
+        "text": "Needs youSee allTodayDana RuizUrgent12:05 pm. Scalp reaction after colourYesterd"
+      }
+    ],
+    "rail": {
+      "x": 0,
+      "y": 0,
+      "w": 236,
+      "h": 1080,
+      "text": "PulseTodayNeeds youCall historyAppointmentsReceptionistMaya is answeringFern & F"
+    },
+    "dayBg": "rgba(0, 0, 0, 0)"
+  },
+  "history": {
+    "pageH": 1115,
+    "rows": [
+      {
+        "x": 268,
+        "y": 186,
+        "w": 65,
+        "h": 34,
+        "text": "Today"
+      },
+      {
+        "x": 339,
+        "y": 186,
+        "w": 89,
+        "h": 34,
+        "text": "Yesterday"
+      },
+      {
+        "x": 433,
+        "y": 186,
+        "w": 68,
+        "h": 34,
+        "text": "7 days"
+      },
+      {
+        "x": 507,
+        "y": 186,
+        "w": 75,
+        "h": 34,
+        "text": "30 days"
+      },
+      {
+        "x": 589,
+        "y": 186,
+        "w": 42,
+        "h": 34,
+        "text": "All"
+      },
+      {
+        "x": 637,
+        "y": 186,
+        "w": 91,
+        "h": 34,
+        "text": "Pick dates"
+      },
+      {
+        "x": 268,
+        "y": 307,
+        "w": 672,
+        "h": 60,
+        "text": "5:02 pmGrace KimInfo0:58Gift cards"
+      },
+      {
+        "x": 268,
+        "y": 367,
+        "w": 672,
+        "h": 61,
+        "text": "4:18 pmNina PatelBooked1:42Women's cut"
+      },
+      {
+        "x": 268,
+        "y": 428,
+        "w": 672,
+        "h": 61,
+        "text": "3:31 pmUnknown callerSpam0:34Business listing sales call"
+      },
+      {
+        "x": 268,
+        "y": 489,
+        "w": 672,
+        "h": 61,
+        "text": "2:47 pmChris DoyleRequest1:28Move appointment"
+      },
+      {
+        "x": 268,
+        "y": 550,
+        "w": 672,
+        "h": 61,
+        "text": "1:22 pmAmira HassanBooked1:50Blow-out"
+      },
+      {
+        "x": 268,
+        "y": 611,
+        "w": 672,
+        "h": 61,
+        "text": "12:05 pmDana RuizUrgent2:21Scalp reaction after colour"
+      },
+      {
+        "x": 268,
+        "y": 672,
+        "w": 672,
+        "h": 61,
+        "text": "11:40 amTom LeeInfo2:02Balayage price and parking"
+      },
+      {
+        "x": 268,
+        "y": 733,
+        "w": 672,
+        "h": 61,
+        "text": "10:04 amLeo ParkBooked1:36Men's cut"
+      },
+      {
+        "x": 268,
+        "y": 794,
+        "w": 672,
+        "h": 61,
+        "text": "9:12 amSara MendesBooked3:04Cut and colour"
+      },
+      {
+        "x": 268,
+        "y": 914,
+        "w": 672,
+        "h": 60,
+        "text": "9:15 pmLucy WongMessage1:04Lost earring"
+      },
+      {
+        "x": 268,
+        "y": 974,
+        "w": 672,
+        "h": 61,
+        "text": "6:40 pmOwen FraserBooked1:17Men's cut"
+      }
+    ],
+    "detail": {
+      "x": 964,
+      "y": 244,
+      "w": 420,
+      "h": 533,
+      "text": "Tuesday 17 November, 12:05 pmDana Ruiz(902) 555-0113, 2:21, during opening hours"
+    },
+    "summary": {
+      "x": 985,
+      "y": 390,
+      "w": 378,
+      "h": 73,
+      "text": "Itchy, red scalp since Monday's colour. Wants Priya to call back today. Told her"
+    },
+    "transcript": [
+      {
+        "x": 985,
+        "y": 588,
+        "w": 374,
+        "h": 63,
+        "text": "CallerI had colour done Monday and my scalp is really itchy and red."
+      },
+      {
+        "x": 985,
+        "y": 651,
+        "w": 374,
+        "h": 64,
+        "text": "MayaI'm sorry, that sounds uncomfortable. I'll flag this as urgent for Priya to "
+      },
+      {
+        "x": 985,
+        "y": 715,
+        "w": 374,
+        "h": 41,
+        "text": "CallerThank you."
+      }
+    ],
+    "name": {
+      "x": 985,
+      "y": 286,
+      "w": 378,
+      "h": 33,
+      "text": "Dana Ruiz"
+    }
+  },
+  "historySara": {
+    "pageH": 1115,
+    "transcript": [
+      {
+        "x": 985,
+        "y": 594,
+        "w": 374,
+        "h": 63,
+        "text": "MayaThanks for calling Fern & Fade Salon, this is Maya. How can I help?"
+      },
+      {
+        "x": 985,
+        "y": 657,
+        "w": 374,
+        "h": 64,
+        "text": "CallerHi, I'd like to book a cut and colour, maybe Thursday?"
+      },
+      {
+        "x": 985,
+        "y": 721,
+        "w": 374,
+        "h": 64,
+        "text": "MayaThursday works. Priya has 2:30 open. Can I get your name?"
+      },
+      {
+        "x": 985,
+        "y": 785,
+        "w": 374,
+        "h": 41,
+        "text": "CallerSara Mendes."
+      },
+      {
+        "x": 985,
+        "y": 826,
+        "w": 374,
+        "h": 64,
+        "text": "MayaLet me make sure I have that right: S for sun, A for apple, R for rose, A fo"
+      },
+      {
+        "x": 985,
+        "y": 890,
+        "w": 374,
+        "h": 41,
+        "text": "CallerYes, that's it."
+      },
+      {
+        "x": 985,
+        "y": 931,
+        "w": 374,
+        "h": 64,
+        "text": "MayaYou're booked with Priya, Thursday at 2:30 for a cut and full colour. See yo"
+      }
+    ],
+    "detail": {
+      "x": 964,
+      "y": 244,
+      "w": 420,
+      "h": 772,
+      "text": "Tuesday 17 November, 9:12 amSara Mendes(902) 555-0131, 3:04, during opening hour"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "pulse-launch-video",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts PulseLaunch out/promo.mp4",
+    "still": "remotion still src/index.ts PulseLaunch"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "playwright-core": "^1.65.1",
+    "typescript": "6.0.3"
+  }
+}
